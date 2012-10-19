@@ -21,7 +21,6 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -36,7 +35,7 @@ public class Charts
 	 * @param data
 	 * @return
 	 */
-	public static ChartPanel createMixtureDistribution (String title, String x,
+	public static ChartPanel createGraph (String title, String x,
 			String y, Double[] data) {
 		XYSeries series1 = new XYSeries("First");
 		for (int i = 0; i < data.length; i++) {
@@ -52,8 +51,7 @@ public class Charts
 		JFreeChart chart =
 				ChartFactory.createXYLineChart(title, x, y, dataset, orientation, show,
 						toolTips, urls);
-		XYPlot plot = (XYPlot) chart.getPlot();  
-		plot.getDomainAxis().setAutoRangeMinimumSize(1440);
+		//XYPlot plot = (XYPlot) chart.getPlot();  
 
 		ChartPanel cp = new ChartPanel(chart);
 		return cp;

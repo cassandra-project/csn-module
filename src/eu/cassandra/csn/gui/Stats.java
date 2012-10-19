@@ -123,8 +123,12 @@ public class Stats {
 			data = new Double[0];
 		}
 		XYSeries series1 = new XYSeries("First");
-		for (int i = 0; i < data.length; i++) {
-			series1.add(i, data[i]);
+		for (int i = 0; i < data.length/15; i++) {
+			double d = 0;
+			for(int j=0;j<60;j++) {
+				d += data[j*60 + i];
+			}
+			series1.add(i, d);
 		}
 		final XYSeriesCollection dataset = new XYSeriesCollection();
 		dataset.addSeries(series1);
@@ -191,7 +195,7 @@ public class Stats {
 
 		JPanel statsPanel = new JPanel(new BorderLayout());
 		statsPanel.add(scrollPane,BorderLayout.CENTER);
-		chartPanel = Charts.createMixtureDistribution("Power Consumption", "Days", "Power (W)", new Double[0]);
+		chartPanel = Charts.createGraph("Power Consumption", "Hours", "Power (W)", new Double[0]);
 
 		statsPanel.add(chartPanel,BorderLayout.PAGE_END);
 

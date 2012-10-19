@@ -235,7 +235,7 @@ public class MongoQueries {
 		return nodesDiscovered;
 	}
 
-	private static int limit = 20;
+	private static int limit = 50;
 
 	/**
 	 * 
@@ -243,7 +243,7 @@ public class MongoQueries {
 	 * @return
 	 */
 	public static Double[] getInstallationResults(String inst_id) {
-		DBCursor cursor = DBConn.getConn().getCollection("inst_results").find(new BasicDBObject("inst_id",inst_id)).sort(new BasicDBObject("tick",1));
+		DBCursor cursor = DBConn.getConn().getCollection("inst_results").find(new BasicDBObject("inst_id",inst_id)).sort(new BasicDBObject("tick",1)).limit(5*1440);
 		Vector<Double> d = new Vector<Double>();
 		while(cursor.hasNext()) {
 			d.add(Double.valueOf(cursor.next().get("p").toString()));

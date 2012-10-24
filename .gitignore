@@ -12,3 +12,9 @@ build/
 *.class
 
 
+/CSN_UML_Diagram.png
+/CSN_UML_Diagram.ucls
+/UML_GUI.png
+/UML_GUI.ucls
+/UML_Mongo.png
+/UML_Mongo.ucls

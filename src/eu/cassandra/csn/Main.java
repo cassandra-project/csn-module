@@ -18,6 +18,7 @@ package eu.cassandra.csn;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 
 import edu.uci.ics.jung.graph.SparseMultigraph;
 import eu.cassandra.csn.graph.MyLink;
@@ -41,10 +42,12 @@ public class Main {
 		MainFrame = new JFrame("Cassandra CSN Module");
 
 		Menu.addMenu(MainFrame);
-		Stats.setNetworkStats(MainFrame);
+		JPanel statsPanel = Stats.setNetworkStats(MainFrame);
 		JPanel graphPanel = CSN.setUpView();
+		
+		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,graphPanel,statsPanel);
 
-		MainFrame.getContentPane().add(graphPanel);
+		MainFrame.getContentPane().add(splitPane);
 		MainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		MainFrame.setSize(800,600);
 		MainFrame.setExtendedState(MainFrame.getExtendedState()|JFrame.MAXIMIZED_BOTH);

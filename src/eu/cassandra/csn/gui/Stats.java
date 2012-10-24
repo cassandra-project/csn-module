@@ -161,7 +161,7 @@ public class Stats {
 	 * 
 	 * @param frame
 	 */
-	public static void setNetworkStats(JFrame frame) {
+	public static JPanel setNetworkStats(JFrame frame) {
 		String[][] data = new String[][] {
 				{"Virtual Days:",""},
 				{"Number of nodes:",""},
@@ -199,8 +199,8 @@ public class Stats {
 
 		statsPanel.add(chartPanel,BorderLayout.PAGE_END);
 
-		frame.add(statsPanel,BorderLayout.EAST);
+		//frame.add(statsPanel,BorderLayout.EAST);
 		frame.add(scrollPaneSelected,BorderLayout.PAGE_END);
-
+return statsPanel;
 	}
 }

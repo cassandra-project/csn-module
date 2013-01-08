@@ -22,6 +22,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.Vector;
 
 import javax.swing.AbstractAction;
 import javax.swing.InputMap;
@@ -46,7 +47,7 @@ public class ConnectToMongoPanel {
 
 	private JTable table;
 	private JDialog jDialog;
-	private JComboBox<String> combo;
+	private JComboBox combo;
 	private MyDefaultTableModel tableModel = new MyDefaultTableModel();
 	/**
 	 * 
@@ -64,6 +65,11 @@ public class ConnectToMongoPanel {
 		table.setModel(tableModel);
 		table.setFillsViewportHeight(true);
 		tableModel.setDataVector(MongoQueries.getRuns(),new String[] {"#","Run ID","Installations"});
+		Vector aa = new Vector();
+		aa.add("1");
+		aa.add("50eab4afe4b077674b3cec22");
+		aa.add("30");
+		tableModel.addRow(aa);
 		table.getSelectionModel().setSelectionInterval(0, 0);
 		JScrollPane scroll = new JScrollPane(table);
 		JButton open = new JButton("Open");		
@@ -89,7 +95,7 @@ public class ConnectToMongoPanel {
 				"Similar Heating Consumption", 
 				"Similar Cooking Consumption" , 
 		"..."};
-		combo = new JComboBox<String>(options);
+		combo = new JComboBox(options);
 
 		JPanel buttons = new JPanel(new FlowLayout());
 		buttons.add(new JLabel("Setup Network Based On:"));

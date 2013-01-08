@@ -355,27 +355,45 @@ public class MongoQueries {
 						keyType = String.valueOf(avgConsumType);
 					}
 					else if(edgeType == PEAK_CONSUMPTION) {
-						DBCursor res = DBConn.getConn().getCollection("inst_results").find(new BasicDBObject( "inst_id",id)).sort(new BasicDBObject( "p",-1)).limit(1);
+						DBCursor res = DBConn.getConn().getCollection("inst_results").find().sort(new BasicDBObject( "p",-1)).limit(1);
+						double totalMax = 0;
+						while(res.hasNext()) {
+							totalMax = Double.parseDouble(res.next().get("p").toString());
+						}
+//						res = DBConn.getConn().getCollection("inst_results").find().sort(new BasicDBObject( "p",1)).limit(2);
+//						double totalMin = 0;
+//						while(res.hasNext()) {
+//							totalMin = Double.parseDouble(res.next().get("p").toString());
+//						}
+//						System.out.println(totalMax + "\t" + totalMin);
+				
+						
+						res = DBConn.getConn().getCollection("inst_results").find(new BasicDBObject( "inst_id",id)).sort(new BasicDBObject( "p",-1)).limit(1);
 						double max = 0;
 						while(res.hasNext()) {
 							max = Double.parseDouble(res.next().get("p").toString());
 						}
 						res.close();
-						int maxConsumType = (int)(max/10);
+						System.out.println(totalMax + "\t" + max);
+						int maxConsumType = (int)(max*5 / (totalMax));
 						keyType = String.valueOf(maxConsumType);
 					}
 					else {
 						keyType = id;
 					}
+					
+					
 					if(!installations.containsKey(keyType)) {
 						Vector<InstallationInfo> v = new Vector<InstallationInfo>();
 						v.add(instInfo);
 						installations.put(keyType,v);
+						System.out.println("installations.put " + keyType);
 					}
 					else {
 						Vector<InstallationInfo> v = installations.get(keyType); 
 						v.add(instInfo);
 						installations.put(keyType,v);
+						System.out.println("installations.put " + keyType);
 					}
 				}
 				cursor.close();

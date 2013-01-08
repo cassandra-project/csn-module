@@ -79,6 +79,7 @@ public class DBConn {
 
 	public static List<String> getDBs() {
 		List<String> collections = m.getDatabaseNames();
+		System.out.println(collections);
 		return collections;
 	}
 }

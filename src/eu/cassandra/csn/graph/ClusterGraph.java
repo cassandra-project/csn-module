@@ -135,7 +135,9 @@ public class ClusterGraph {
 	 */
 	private static void edgeClusterer(int numberOfEdgesToRemove) {
 		EdgeBetweennessClusterer<MyNode,MyLink> clusterer = new EdgeBetweennessClusterer<MyNode,MyLink>(numberOfEdgesToRemove);
-		cluster( clusterer.transform(CSNGraph.getGraph()),clusterer.getEdgesRemoved()); 
+		cluster( clusterer.transform(CSNGraph.getGraph()),clusterer.getEdgesRemoved());
+		
+		
 	}
 
 	/**
